@@ -368,24 +368,52 @@ posnext.PointOfSale.ItemSelector = class {
 						<div class="item-display abbr">${frappe.get_abbr(item.item_name)}</div>`;
 			}
 		}
+		// Assume a flat 5% VAT for example
+		const vat_rate = 5; 
+		const price_incl_vat = flt(price_list_rate) * (1 + (vat_rate / 100));
 
-		return (
-			`<div class="item-wrapper"
-				data-item-code="${escape(item.item_code)}" data-serial-no="${escape(serial_no)}"
-				data-batch-no="${escape(batch_no)}" data-uom="${escape(uom)}"
-				data-rate="${escape(price_list_rate || 0)}"
-				title="${item.item_name}">
+		return ( 
+		  `<div class="item-wrapper"
+		      data-item-code="${escape(item.item_code)}"
+		      data-uom="${escape(uom)}"
+		      data-rate="${escape(price_list_rate || 0)}"
+		      title="${item.item_name}">
 
-				${get_item_image_html()}
+		      ${get_item_image_html()}
 
-				<div class="item-detail">
-					<div class="item-name">
-						${frappe.ellipsis(item.item_name, 18)}
-					</div>
-					<div class="item-rate">${format_currency(price_list_rate, item.currency, precision) || 0} / ${uom}</div>
-				</div>
-			</div>`
+		      <div class="item-detail">
+		          <div class="item-name">
+		              ${frappe.ellipsis(item.item_name, 18)}
+		          </div>
+		          <div class="item-rate">
+		              ${format_currency(price_list_rate, item.currency, precision)} / ${uom}
+		          </div>
+		          <div class="item-rate-vat" style="color:#28a745;">
+		              ${format_currency(price_incl_vat, item.currency, precision)} (incl. VAT)
+		          </div>
+		      </div>
+		  </div>`
 		);
+
+
+		// return ( 
+		// 	`<div class="item-wrapper"
+		// 		data-item-code="${escape(item.item_code)}" data-serial-no="${escape(serial_no)}"
+		// 		data-batch-no="${escape(batch_no)}" data-uom="${escape(uom)}"
+		// 		data-rate="${escape(price_list_rate || 0)}"
+		// 		title="${item.item_name}">
+
+		// 		${get_item_image_html()}
+
+		// 		<div class="item-detail">
+		// 			<div class="item-name">
+		// 				${frappe.ellipsis(item.item_name, 18)}
+		// 			</div>
+		// 			<div class="item-rate">${format_currency(price_list_rate, item.currency, precision) || 0} / ${uom}</div>
+		// 	<div class="item-rate-vat">${format_currency(item.item_tax_rate, item.currency, precision) || 0} / ${uom}</div>
+		// 		</div>
+		// 	</div>`
+		// );
 	}
 
 	handle_broken_image($img) {
