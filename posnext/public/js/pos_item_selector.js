@@ -146,12 +146,23 @@ posnext.PointOfSale.ItemSelector = class {
 		let { item_group, pos_profile } = this;
 
 		!item_group && (item_group = this.parent_item_group);
+		// console.log(frappe.call({
+		//     method: "common_requirements_app.common_requirements_app.api.pos_custom.get_items",
+		//     freeze: true,
+		//     args: { start, page_length, price_list, item_group, search_term, pos_profile },
+		// }))
 
 		return frappe.call({
-			method: "erpnext.selling.page.point_of_sale.point_of_sale.get_items",
-			freeze: true,
-			args: { start, page_length, price_list, item_group, search_term, pos_profile },
+		    method: "common_requirements_app.common_requirements_app.api.pos_custom.get_items",
+		    freeze: true,
+		    args: { start, page_length, price_list, item_group, search_term, pos_profile },
 		});
+
+		// return frappe.call({
+		// 	method: "erpnext.selling.page.point_of_sale.point_of_sale.get_itemss",
+		// 	freeze: true,
+		// 	args: { start, page_length, price_list, item_group, search_term, pos_profile },
+		// });
 	}
 
 
@@ -187,11 +198,25 @@ posnext.PointOfSale.ItemSelector = class {
 				// this.$items_container.append(item_html);
 			});
 		} else {
-			items.forEach(item => {
-                var item_html = this.get_item_html(item);
-                this.$items_container.append(item_html);
-        	})
-		}
+    this.$items_container.html('');  // clear container first
+    items.forEach(item => {
+        const item_html = this.get_item_html(item);
+        this.$items_container.append(item_html);
+    });
+
+    // ensure grid/flex display
+    this.$items_container.css({
+        display: 'flex',
+        'flex-wrap': 'wrap',
+        gap: '10px'
+    });
+}
+		// } else {
+		// 	items.forEach(item => {
+        //         var item_html = this.get_item_html(item);
+        //         this.$items_container.append(item_html);
+        // 	})
+		// }
 
 		// this.$cart_container = this.$component.find('.cart-container');
 

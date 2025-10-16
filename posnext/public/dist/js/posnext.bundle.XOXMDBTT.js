@@ -885,7 +885,7 @@
       let { item_group, pos_profile } = this;
       !item_group && (item_group = this.parent_item_group);
       return frappe.call({
-        method: "erpnext.selling.page.point_of_sale.point_of_sale.get_items",
+        method: "common_requirements_app.common_requirements_app.api.pos_custom.get_items",
         freeze: true,
         args: { start, page_length, price_list, item_group, search_term, pos_profile }
       });
@@ -919,9 +919,15 @@
           this.render_cart_item(item);
         });
       } else {
+        this.$items_container.html("");
         items.forEach((item) => {
-          var item_html = this.get_item_html(item);
+          const item_html = this.get_item_html(item);
           this.$items_container.append(item_html);
+        });
+        this.$items_container.css({
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "10px"
         });
       }
     }
@@ -3969,4 +3975,4 @@ Return`,
     }
   };
 })();
-//# sourceMappingURL=posnext.bundle.XAMCBCZK.js.map
+//# sourceMappingURL=posnext.bundle.XOXMDBTT.js.map
