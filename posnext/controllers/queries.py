@@ -46,6 +46,6 @@ def get_fields(doctype, fields=None):
 	fields.extend(meta.get_search_fields())
 
 	if meta.title_field and meta.title_field.strip() not in fields:
-		fields.insert(1, meta.title_field.strip()) 
+		fields.insert(1, meta.title_field.strip())
 
 	return unique(fields)
