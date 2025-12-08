@@ -1374,7 +1374,7 @@
     }
     prepare_dom() {
       this.wrapper.append(
-        `<section class="customer-cart-container customer-cart-container1 " id="customer-cart-container2"></section>`
+        `<style>.point-of-sale-app > .items-selector > .items-container > .item-wrapper{width:150px !important;}</style><section class="customer-cart-container customer-cart-container1 " id="customer-cart-container2"></section>`
       );
       this.$component = this.wrapper.find(".customer-cart-container1");
     }
@@ -3975,4 +3975,4 @@ Return`,
     }
   };
 })();
-//# sourceMappingURL=posnext.bundle.XOXMDBTT.js.map
+//# sourceMappingURL=posnext.bundle.XYFB4RA4.js.map
