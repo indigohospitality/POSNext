@@ -782,6 +782,7 @@ posnext.PointOfSale.Controller = class {
 	}
 
 	get_available_stock(item_code, warehouse) {
+		// alert(warehouse)
 		const me = this;
 		return frappe.call({
 			method: "erpnext.accounts.doctype.pos_invoice.pos_invoice.get_stock_availability",
