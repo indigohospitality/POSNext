@@ -885,7 +885,7 @@
       let { item_group, pos_profile } = this;
       !item_group && (item_group = this.parent_item_group);
       return frappe.call({
-        method: "erpnext.selling.page.point_of_sale.point_of_sale.get_items",
+        method: "common_requirements_app.common_requirements_app.api.pos_custom.get_items",
         freeze: true,
         args: { start, page_length, price_list, item_group, search_term, pos_profile }
       });
@@ -3975,4 +3975,4 @@ Return`,
     }
   };
 })();
-//# sourceMappingURL=posnext.bundle.MA7FTVTX.js.map
+//# sourceMappingURL=posnext.bundle.FSK4TOOS.js.map

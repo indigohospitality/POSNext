@@ -147,18 +147,17 @@ posnext.PointOfSale.ItemSelector = class {
 		// alert(pos_profile)
 		!item_group && (item_group = this.parent_item_group);
 
-		// return frappe.call({
-		//     method: "common_requirements_app.common_requirements_app.api.pos_custom.get_items",
-		//     freeze: true,
-		//     args: { start, page_length, price_list, item_group, search_term, pos_profile },
-		// });
-		// hh
-
 		return frappe.call({
-			method: "erpnext.selling.page.point_of_sale.point_of_sale.get_items",
-			freeze: true,
-			args: { start, page_length, price_list, item_group, search_term, pos_profile },
+		    method: "common_requirements_app.common_requirements_app.api.pos_custom.get_items",
+		    freeze: true,
+		    args: { start, page_length, price_list, item_group, search_term, pos_profile },
 		});
+
+		// return frappe.call({
+		// 	method: "erpnext.selling.page.point_of_sale.point_of_sale.get_itemss",
+		// 	freeze: true,
+		// 	args: { start, page_length, price_list, item_group, search_term, pos_profile },
+		// });
 	}
 
 
